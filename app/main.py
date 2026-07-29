@@ -15,6 +15,7 @@ from app.seed_bravo_video import seed_bravo_video
 from app.seed_proman import seed_proman
 from app.seed_kitchen import seed_kitchen
 from app.seed_proman_top import seed_proman_top
+from app.seed_proman_top2 import seed_proman_top2
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -72,6 +73,12 @@ async def main():
         seed_proman_top()
     except Exception:
         logger.exception("Seed (ProMan Top-60) bajarilmadi")
+    # ProMan Electronics do'koniga saralangan 2-partiya: yana 60 xil kunlik
+    # zarur elektronika/maishiy texnika (Uzum'dan to'g'ri nom+narx+rasm) qo'shiladi.
+    try:
+        seed_proman_top2()
+    except Exception:
+        logger.exception("Seed (ProMan Top-60 2-partiya) bajarilmadi")
     # Guruhlarga avtomatik reklama tarqatuvchi fon vazifasi.
     # Sozlash: Admin panel → «📣 Guruhlarga reklama» yoki /reklama buyrug'i.
     from app.handlers.ads import ads_scheduler
